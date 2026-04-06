@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Komplette AirPods under 500 kr – finn.no</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f3f4f6; color: #1f2937; }
+    header { background: linear-gradient(135deg, #06aeef 0%, #0070cc 100%); color: white; padding: 32px 24px; text-align: center; box-shadow: 0 4px 12px rgba(6,174,239,0.3); }
+    header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+    header p { font-size: 1rem; opacity: 0.9; }
+    .badges { display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; padding: 4px 14px; font-size: 0.82rem; }
+    .badge.green { background: rgba(16,185,129,0.3); border-color: rgba(16,185,129,0.5); }
+    .container { max-width: 980px; margin: 0 auto; padding: 24px 16px; }
+    .stats { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .stat-card { background: white; border-radius: 12px; padding: 16px 20px; flex: 1; min-width: 130px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); text-align: center; }
+    .stat-card .num { font-size: 1.7rem; font-weight: 800; color: #06aeef; }
+    .stat-card .label { font-size: 0.78rem; color: #6b7280; margin-top: 4px; }
+    .filter-note { background: #ecfdf5; border: 1px solid #6ee7b7; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; font-size: 0.87rem; color: #065f46; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    thead { background: #06aeef; color: white; }
+    thead th { padding: 13px 14px; text-align: left; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.12s; }
+    tbody tr:hover { background: #f0f9ff; }
+    tbody tr:last-child { border-bottom: none; }
+    td { padding: 13px 14px; vertical-align: middle; font-size: 0.91rem; }
+    td.num { font-weight: 700; color: #111; text-align: center; width: 40px; }
+    td.title span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px; }
+    td.price { font-weight: 800; font-size: 1rem; white-space: nowrap; }
+    .price-low  { color: #059669; }
+    .price-mid  { color: #d97706; }
+    .price-high { color: #dc2626; }
+    td.location { color: #6b7280; font-size: 0.83rem; white-space: nowrap; }
+    .links-cell { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; text-decoration: none; white-space: nowrap; transition: opacity 0.15s, transform 0.1s; }
+    .btn:hover { opacity: 0.82; transform: translateY(-1px); }
+    .btn-product { background: #06aeef; color: white; }
+    .btn-chat    { background: #10b981; color: white; }
+    footer { text-align: center; padding: 24px; color: #9ca3af; font-size: 0.8rem; }
+    @media (max-width: 640px) { thead th:nth-child(4), td:nth-child(4) { display: none; } }
+  </style>
+</head>
+<body>
+<header>
+  <h1>🎧 Komplette AirPods på FINN.no</h1>
+  <p>50 annonser – kun hele enheter – sortert pris lav til høy</p>
+  <div class="badges">
+    <span class="badge">🔍 Oppdatert i dag</span>
+    <span class="badge">💰 Maks 500 kr</span>
+    <span class="badge green">✅ Filtrert: ingen deksler / esker / enkelt-ørepropper</span>
+  </div>
+</header>
+
+<div class="container">
+  <div class="stats">
+    <div class="stat-card"><div class="num">50</div><div class="label">Annonser</div></div>
+    <div class="stat-card"><div class="num">50 kr</div><div class="label">Billigste</div></div>
+    <div class="stat-card"><div class="num">500 kr</div><div class="label">Maks pris</div></div>
+    <div class="stat-card"><div class="num">795</div><div class="label">Totalt treff</div></div>
+  </div>
+  <div class="filter-note">
+    ✅ Filtrert bort: deksler, esker, ladere, enkelt-ørepropper, defekte og ikke-Apple merker. Alle annonser er sannsynlige komplette AirPods-sett. Sjekk alltid annonsen for detaljer.
+  </div>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Tittel</th><th>Pris</th><th>Sted</th><th>Lenker</th></tr>
+    </thead>
+    <tbody id="tb"></tbody>
+  </table>
+</div>
+<footer>Data hentet fra finn.no · Sjekk alltid annonsen – priser og tilgjengelighet kan ha endret seg</footer>
+
+<script>
+const data = [
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=360472861",
+    "finnkode": "360472861",
+    "location": "Halden",
+    "price": "50 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/360472861",
+    "title": "AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=451589280",
+    "finnkode": "451589280",
+    "location": "Oslo",
+    "price": "50 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/451589280",
+    "title": "Apple AirPods Pro trådløse ørepropper hvit box"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=450646523",
+    "finnkode": "450646523",
+    "location": "Oslo",
+    "price": "50 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/450646523",
+    "title": "Eldre AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=448800139",
+    "finnkode": "448800139",
+    "location": "Fevik",
+    "price": "89 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/448800139",
+    "title": "Apple AirPods gen 1 og 2"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=457657875",
+    "finnkode": "457657875",
+    "location": "Sandsli",
+    "price": "100 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/457657875",
+    "title": "AirPods 2. generasjon"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=456906055",
+    "finnkode": "456906055",
+    "location": "Hundvåg",
+    "price": "100 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/456906055",
+    "title": "Apple AirPods trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=456356425",
+    "finnkode": "456356425",
+    "location": "Fredrikstad",
+    "price": "100 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/456356425",
+    "title": "Airpods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=452798783",
+    "finnkode": "452798783",
+    "location": "Sørskogbygda",
+    "price": "100 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/452798783",
+    "title": "AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=458641774",
+    "finnkode": "458641774",
+    "location": "Sandefjord",
+    "price": "150 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/458641774",
+    "title": "Apple AirPods trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=457954076",
+    "finnkode": "457954076",
+    "location": "Notodden",
+    "price": "150 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/457954076",
+    "title": "Apple AirPods (2. generasjon)"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=453658654",
+    "finnkode": "453658654",
+    "location": "Kleppe",
+    "price": "150 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/453658654",
+    "title": "AirPods gen 1"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=452133523",
+    "finnkode": "452133523",
+    "location": "Haslum",
+    "price": "150 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/452133523",
+    "title": "Apple AirPods trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=456024760",
+    "finnkode": "456024760",
+    "location": "Oslo",
+    "price": "190 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/456024760",
+    "title": "AirPods (1st gen)"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=456584089",
+    "finnkode": "456584089",
+    "location": "Oslo",
+    "price": "199 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/456584089",
+    "title": "Selger AirPods Pro 1. generasjon (2019) – modell A2084."
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=458769760",
+    "finnkode": "458769760",
+    "location": "Oslo",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/458769760",
+    "title": "AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=382884564",
+    "finnkode": "382884564",
+    "location": "Oslo",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/382884564",
+    "title": "Apple Airpods selges billig"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=412766980",
+    "finnkode": "412766980",
+    "location": "Oslo",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/412766980",
+    "title": "Pent brukt airpods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=437627549",
+    "finnkode": "437627549",
+    "location": "Sandvika",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/437627549",
+    "title": "Apple AirPods 2"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=455851412",
+    "finnkode": "455851412",
+    "location": "Sola",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/455851412",
+    "title": "Apple AirPods generasjon 1"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=455401556",
+    "finnkode": "455401556",
+    "location": "Kleppe",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/455401556",
+    "title": "Apple AirPods trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=452135082",
+    "finnkode": "452135082",
+    "location": "Godvik",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/452135082",
+    "title": "AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=450956065",
+    "finnkode": "450956065",
+    "location": "Fauske",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/450956065",
+    "title": "Apple AirPods Pro trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=449940993",
+    "finnkode": "449940993",
+    "location": "Oslo",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/449940993",
+    "title": "Apple AirPods trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=449751828",
+    "finnkode": "449751828",
+    "location": "Tromsø",
+    "price": "200 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/449751828",
+    "title": "Apple AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=450486979",
+    "finnkode": "450486979",
+    "location": "Oslo",
+    "price": "249 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/450486979",
+    "title": "Airpods gen 2"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=458381294",
+    "finnkode": "458381294",
+    "location": "Moss",
+    "price": "250 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/458381294",
+    "title": "AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=458300046",
+    "finnkode": "458300046",
+    "location": "Sandnes",
+    "price": "250 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/458300046",
+    "title": "Apple AirPods gen. 2, trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=458256154",
+    "finnkode": "458256154",
+    "location": "Saupstad",
+    "price": "250 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/458256154",
+    "title": "Apple AirPods trådløs. Generasjon 1"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=457920088",
+    "finnkode": "457920088",
+    "location": "Lillehammer",
+    "price": "250 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/457920088",
+    "title": "AirPods 2.gen"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=456378715",
+    "finnkode": "456378715",
+    "location": "Haugesund",
+    "price": "250 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/456378715",
+    "title": "Apple AirPods pro 1st gen"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=455104856",
+    "finnkode": "455104856",
+    "location": "Oslo",
+    "price": "250 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/455104856",
+    "title": "Apple AirPods generasjon 2"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=453081850",
+    "finnkode": "453081850",
+    "location": "Oslo",
+    "price": "250 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/453081850",
+    "title": "Apple AirPods gen 3"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=450203640",
+    "finnkode": "450203640",
+    "location": "Kristiansund N",
+    "price": "250 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/450203640",
+    "title": "Apple AirPods trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=457804469",
+    "finnkode": "457804469",
+    "location": "Jessheim",
+    "price": "280 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/457804469",
+    "title": "Apple AirPods trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=450265068",
+    "finnkode": "450265068",
+    "location": "Røyken",
+    "price": "299 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/450265068",
+    "title": "Apple AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=458769373",
+    "finnkode": "458769373",
+    "location": "Oslo",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/458769373",
+    "title": "Apple AirPods A2564/A2565 3 Gen"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=458385384",
+    "finnkode": "458385384",
+    "location": "Råde",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/458385384",
+    "title": "Apple AirPods Gen 2"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=457835945",
+    "finnkode": "457835945",
+    "location": "Oslo",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/457835945",
+    "title": "Apple AirPods Pro trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=457147764",
+    "finnkode": "457147764",
+    "location": "Flekkefjord",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/457147764",
+    "title": "Apple AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=455878136",
+    "finnkode": "455878136",
+    "location": "Bodø",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/455878136",
+    "title": "Apple AirPods Pro"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=455860959",
+    "finnkode": "455860959",
+    "location": "Lillestrøm",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/455860959",
+    "title": "Apple AirPods Gen 2"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=455799201",
+    "finnkode": "455799201",
+    "location": "Rakkestad",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/455799201",
+    "title": "Apple AirPods trådløst headset hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=455611070",
+    "finnkode": "455611070",
+    "location": "Kråkerøy",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/455611070",
+    "title": "Apple Airpods 1. Gen"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=409695479",
+    "finnkode": "409695479",
+    "location": "Blystadlia",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/409695479",
+    "title": "AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=455121465",
+    "finnkode": "455121465",
+    "location": "Tjodalyng",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/455121465",
+    "title": "Apple AirPods trådløse ørepropper hvit 1st gen"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=393482539",
+    "finnkode": "393482539",
+    "location": "Oslo",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/393482539",
+    "title": "AirPods 1"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=454500272",
+    "finnkode": "454500272",
+    "location": "Tårstad",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/454500272",
+    "title": "Apple airpods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=454334761",
+    "finnkode": "454334761",
+    "location": "Sola",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/454334761",
+    "title": "Apple AirPods trådløse ørepropper hvit"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=368329104",
+    "finnkode": "368329104",
+    "location": "Oslo",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/368329104",
+    "title": "AirPods"
+  },
+  {
+    "chatUrl": "https://www.finn.no/message/new?finnkode=396615055",
+    "finnkode": "396615055",
+    "location": "Kristiansand S",
+    "price": "300 kr",
+    "productUrl": "https://www.finn.no/recommerce/forsale/item/396615055",
+    "title": "AirPods"
+  }
+];
+const tb = document.getElementById('tb');
+data.forEach((item, i) => {
+  const num = item.price === 'Gis bort' ? 0 : parseInt(item.price.replace(/\D/g,'')) || 0;
+  const pc = num <= 150 ? 'price-low' : num <= 300 ? 'price-mid' : 'price-high';
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td class="num">${i+1}</td>
+    <td class="title"><span title="${item.title}">${item.title}</span></td>
+    <td class="price ${pc}">${item.price}</td>
+    <td class="location">📍 ${item.location}</td>
+    <td><div class="links-cell">
+      <a href="${item.productUrl}" target="_blank" class="btn btn-product">🔗 Annonse</a>
+      <a href="${item.chatUrl}" target="_blank" class="btn btn-chat">💬 Chat</a>
+    </div></td>
+  `;
+  tb.appendChild(tr);
+});
+</script>
+</body>
+</html>
